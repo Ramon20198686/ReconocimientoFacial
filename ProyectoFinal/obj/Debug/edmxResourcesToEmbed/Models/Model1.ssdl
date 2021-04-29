@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CONTROL_DOCUMENTOSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DEPARTAMENTOS">
+    <Key>
+      <PropertyRef Name="SIGLAS" />
+    </Key>
+    <Property Name="NOMBRE" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="SIGLAS" Type="char" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <EntityType Name="USUARIOS">
+    <Key>
+      <PropertyRef Name="CODIGO" />
+    </Key>
+    <Property Name="CODIGO" Type="int" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="CORREO" Type="varchar" MaxLength="25" />
+    <Property Name="DEPARTAMENTO" Type="char" MaxLength="25" />
+    <Property Name="CARGO" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__USUARIOS__DEPART__267ABA7A">
+    <End Role="DEPARTAMENTOS" Type="Self.DEPARTAMENTOS" Multiplicity="0..1" />
+    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEPARTAMENTOS">
+        <PropertyRef Name="SIGLAS" />
+      </Principal>
+      <Dependent Role="USUARIOS">
+        <PropertyRef Name="DEPARTAMENTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CONTROL_DOCUMENTOSModelStoreContainer">
+    <EntitySet Name="DEPARTAMENTOS" EntityType="Self.DEPARTAMENTOS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__USUARIOS__DEPART__267ABA7A" Association="Self.FK__USUARIOS__DEPART__267ABA7A">
+      <End Role="DEPARTAMENTOS" EntitySet="DEPARTAMENTOS" />
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

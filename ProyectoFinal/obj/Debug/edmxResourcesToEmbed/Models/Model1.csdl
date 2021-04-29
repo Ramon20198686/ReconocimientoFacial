@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CONTROL_DOCUMENTOSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DEPARTAMENTOS">
+    <Key>
+      <PropertyRef Name="SIGLAS" />
+    </Key>
+    <Property Name="NOMBRE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SIGLAS" Type="String" MaxLength="25" FixedLength="true" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="USUARIOS" Relationship="Self.FK__USUARIOS__DEPART__267ABA7A" FromRole="DEPARTAMENTOS" ToRole="USUARIOS" />
+  </EntityType>
+  <EntityType Name="USUARIOS">
+    <Key>
+      <PropertyRef Name="CODIGO" />
+    </Key>
+    <Property Name="CODIGO" Type="Int32" Nullable="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CORREO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="DEPARTAMENTO" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+    <Property Name="CARGO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="DEPARTAMENTOS" Relationship="Self.FK__USUARIOS__DEPART__267ABA7A" FromRole="USUARIOS" ToRole="DEPARTAMENTOS" />
+  </EntityType>
+  <Association Name="FK__USUARIOS__DEPART__267ABA7A">
+    <End Role="DEPARTAMENTOS" Type="Self.DEPARTAMENTOS" Multiplicity="0..1" />
+    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEPARTAMENTOS">
+        <PropertyRef Name="SIGLAS" />
+      </Principal>
+      <Dependent Role="USUARIOS">
+        <PropertyRef Name="DEPARTAMENTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CONTROL_DOCUMENTOSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DEPARTAMENTOS" EntityType="Self.DEPARTAMENTOS" />
+    <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" />
+    <AssociationSet Name="FK__USUARIOS__DEPART__267ABA7A" Association="Self.FK__USUARIOS__DEPART__267ABA7A">
+      <End Role="DEPARTAMENTOS" EntitySet="DEPARTAMENTOS" />
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

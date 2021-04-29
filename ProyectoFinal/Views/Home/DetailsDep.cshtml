@@ -1,0 +1,34 @@
+﻿@model ProyectoFinal.Models.DEPARTAMENTOS
+
+@{
+    ViewBag.Title = "Details Dep";
+}
+
+<h2>DetailsDep</h2>
+
+<div>
+    <h4>DEPARTAMENTOS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SIGLAS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SIGLAS)
+        </dd>
+
+    </dl>
+</div>
+<p> 
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SIGLAS }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
